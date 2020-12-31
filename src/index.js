@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import { StoreProvider } from "./store.js"
 import reportWebVitals from './reportWebVitals';
 import { ChakraProvider } from "@chakra-ui/react"
 
 ReactDOM.render(
   <ChakraProvider>
-    <App />
+    <StoreProvider>
+      <App />
+    </StoreProvider>
   </ChakraProvider>,
   document.getElementById('root')
 );
