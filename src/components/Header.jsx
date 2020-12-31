@@ -1,11 +1,11 @@
 import React from "react";
+import { Heading } from "@chakra-ui/react"
 
 const Header = () => {
   return(
-    <div>
-      <h1>College Football Performance Ratio Stats</h1>
-      <h2>By Pete Hanner</h2>
-    </div>
+    <>
+      <Heading as='h1'>College Football Performance Ratio Stats</Heading>
+    </>
     )
   }
 
