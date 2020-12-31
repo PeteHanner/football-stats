@@ -10,7 +10,7 @@ const Reducer = (state, action) => {
     case "FETCH_STATS_START":
       console.log("Fetching stats");
       return {...state, isFetching: true}
-    case "FETCH_STATS_BAD YEAR":
+    case "FETCH_STATS_BAD_YEAR":
       console.log("Year provided not available in API");
       return {...state, isFetching: false}
     case "FETCH_STATS_SUCCESS":
