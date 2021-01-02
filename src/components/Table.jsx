@@ -9,7 +9,7 @@ const Table = () => {
     dispatch({ type: "FETCH_STATS_START" })
     axios.get(`https://pete-hanner-football-stats-api.herokuapp.com/seasons/${season}`)
       .then(response => {
-        const rspArr = response.data.results
+        const rspArr = response.data
         if (rspArr.length === 1) {
           dispatch({ type: "FETCH_STATS_BAD_YEAR" })
           // Push correct year to history
