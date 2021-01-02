@@ -1,11 +1,11 @@
 import Header from "./components/Header";
-import Table from "./components/Table";
+import StatsTable from "./components/StatsTable";
 
 function App() {
   return (
     <>
       <Header/>
-      <Table/>
+      <StatsTable/>
     </>
   );
 }
