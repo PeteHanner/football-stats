@@ -15,7 +15,6 @@ const Reducer = (state, action) => {
       return {...state, isFetching: false}
     case "FETCH_STATS_SUCCESS":
       console.log("Successfully fetched stats");
-      console.log(action.payload);
       return {...state, isFetching: false, stats: action.payload}
     case "FETCH_STATS_FAILURE":
       console.log("Error fetching from API:");
