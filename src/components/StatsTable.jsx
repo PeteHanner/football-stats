@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useEffect } from "react";
 import { Context } from "../store"
 import axios from "axios"
-import { Table, Thead, Tbody, Tr, Th, Td, TableCaption } from "@chakra-ui/react"
+import { Table, Thead, Tbody, Tr, Th, Td, Center } from "@chakra-ui/react"
 
 const StatsTable = () => {
   const [state, dispatch] = useContext(Context);
@@ -34,8 +34,6 @@ const StatsTable = () => {
     fetchStats(2020);
   }, [fetchStats]);
 
-  // useEffect(buildStatsTable, [stats])
-
   const buildStatsTable = () => {
     if (stats.length > 1) {
       return(stats.map((team, idx) => {
@@ -53,13 +51,17 @@ const StatsTable = () => {
         )
       }))
     } else {
-      console.log(":(")
+      return(
+        <Center>
+          <Tr key="0">Loading team data...</Tr>
+        </Center>
+      )
     }
   }
 
   return(
     <>
-      <Table variant="striped">
+      <Table variant="striped" size="sm">
         <Thead>
           <Tr>
             <Th>Team</Th>
