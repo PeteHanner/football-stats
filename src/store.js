@@ -2,24 +2,42 @@ import React, { createContext, useReducer } from "react";
 
 const initialState = {
   isFetching: false,
-  stats: []
+  stats: [],
+  sortField: "cpr",
+  sortDirection: "desc",
+  errorMsg: ""
 }
 
 const Reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_STATS_START":
-      console.log("Fetching stats");
-      return {...state, isFetching: true}
+      return {
+        ...state,
+        isFetching: true,
+      }
     case "FETCH_STATS_BAD_YEAR":
-      console.log("Year provided not available in API");
-      return {...state, isFetching: false}
+      return {
+        ...state,
+        isFetching: false,
+      }
     case "FETCH_STATS_SUCCESS":
-      console.log("Successfully fetched stats");
-      return {...state, isFetching: false, stats: action.payload}
+      return {
+        ...state,
+        isFetching: false,
+        stats: action.payload,
+      }
     case "FETCH_STATS_FAILURE":
-      console.log("Error fetching from API:");
-      console.log(action.payload.message);
-      return {...state, isFetching: false}
+      return {
+        ...state,
+        isFetching: false,
+        errorMsg: action.payload.message
+      }
+    case "SET_SORT_FIELD":
+      return {
+        ...state,
+        sortField: action.payload.field,
+        sortDirection: action.payload.direction,
+      }
     default:
       throw new Error();
   }
