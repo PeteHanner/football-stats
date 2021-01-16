@@ -9,18 +9,17 @@ const initialState = {
 const Reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_STATS_START":
-      console.log("Fetching stats");
       return {...state, isFetching: true}
     case "FETCH_STATS_BAD_YEAR":
-      console.log("Year provided not available in API");
       return {...state, isFetching: false}
     case "FETCH_STATS_SUCCESS":
-      console.log("Successfully fetched stats");
       return {...state, isFetching: false, stats: action.payload}
     case "FETCH_STATS_FAILURE":
       console.log("Error fetching from API:");
       console.log(action.payload.message);
       return {...state, isFetching: false}
+    case "SET_SORT_FIELD":
+      return {...state, sortField: action.payload}
     default:
       throw new Error();
   }
