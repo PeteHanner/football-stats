@@ -5,7 +5,7 @@ import { Table, Thead, Tbody, Tr, Th, Td, Center } from "@chakra-ui/react"
 
 const StatsTable = () => {
   const [state, dispatch] = useContext(Context);
-  const { stats, isFetching, sortField } = state;
+  const { stats, isFetching, sortField, sortDirection } = state;
 
   const fetchStats = useCallback((season) => {
     dispatch({ type: "FETCH_STATS_START" })
@@ -36,22 +36,32 @@ const StatsTable = () => {
 
   useEffect(() => {
     sortStats(stats)
-  }, [sortField])
+  }, [sortField, sortDirection])
 
   const setSortField = (field) => {
+    let direction = sortDirection
+    if (sortField === field && direction === "asc") {
+      direction = "desc"
+    } else if (sortField === field && direction === "desc") {
+      direction = "asc"
+    }
+
     dispatch({
       type: "SET_SORT_FIELD",
-      payload: field,
+      payload: {
+        field: field,
+        direction: direction,
+      },
     })
   }
 
   const sortStats = (array) => {
     const sortedArr = array.sort((a, b) => {
       if (a[sortField] < b[sortField]) {
-        return 1;
+        return sortDirection === "desc" ? 1 : -1;
       }
       if (a[sortField] > b[sortField]) {
-        return -1;
+        return sortDirection === "desc" ? -1 : 1;
       }
       return 0;
     })

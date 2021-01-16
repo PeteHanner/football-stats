@@ -4,22 +4,40 @@ const initialState = {
   isFetching: false,
   stats: [],
   sortField: "cpr",
+  sortDirection: "desc",
 }
 
 const Reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_STATS_START":
-      return {...state, isFetching: true}
+      return {
+        ...state,
+        isFetching: true,
+      }
     case "FETCH_STATS_BAD_YEAR":
-      return {...state, isFetching: false}
+      return {
+        ...state,
+        isFetching: false,
+      }
     case "FETCH_STATS_SUCCESS":
-      return {...state, isFetching: false, stats: action.payload}
+      return {
+        ...state,
+        isFetching: false,
+        stats: action.payload,
+      }
     case "FETCH_STATS_FAILURE":
       console.log("Error fetching from API:");
       console.log(action.payload.message);
-      return {...state, isFetching: false}
+      return {
+        ...state,
+        isFetching: false,
+      }
     case "SET_SORT_FIELD":
-      return {...state, sortField: action.payload}
+      return {
+        ...state,
+        sortField: action.payload.field,
+        sortDirection: action.payload.direction,
+      }
     default:
       throw new Error();
   }
