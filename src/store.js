@@ -2,7 +2,8 @@ import React, { createContext, useReducer } from "react";
 
 const initialState = {
   isFetching: false,
-  stats: []
+  stats: [],
+  sortField: "cpr",
 }
 
 const Reducer = (state, action) => {

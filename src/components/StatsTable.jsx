@@ -5,16 +5,16 @@ import { Table, Thead, Tbody, Tr, Th, Td, Center } from "@chakra-ui/react"
 
 const StatsTable = () => {
   const [state, dispatch] = useContext(Context);
-  const { stats } = state;
+  const { stats, isFetching } = state;
 
   const fetchStats = useCallback((season) => {
     dispatch({ type: "FETCH_STATS_START" })
     axios.get(`https://pete-hanner-football-stats-api.herokuapp.com/seasons/${season}`)
     .then(response => {
       const rspArr = response.data
-      if (rspArr.length === 1) {
+      if (rspArr.length <= 1) {
         dispatch({ type: "FETCH_STATS_BAD_YEAR" })
-        // Push correct year to history
+        // TODO: Push correct year to history
       } else {
         dispatch({
           type: "FETCH_STATS_SUCCESS",
@@ -34,6 +34,10 @@ const StatsTable = () => {
     fetchStats(2020);
   }, [fetchStats]);
 
+  const sortByField = (field) => {
+    console.log(field);
+  }
+
   const buildStatsTable = () => {
     if (stats.length > 1) {
       return(stats.map((team, idx) => {
@@ -50,10 +54,16 @@ const StatsTable = () => {
           </Tr>
         )
       }))
-    } else {
+    } else if (isFetching) {
       return(
         <Center>
           <Tr key="0">Loading team data...</Tr>
+        </Center>
+      )
+    } else {
+      return(
+        <Center>
+          <Tr key="0">Something's gone wrong. Please wait a moment and refresh.</Tr>
         </Center>
       )
     }
@@ -64,14 +74,14 @@ const StatsTable = () => {
       <Table variant="striped" size="sm">
         <Thead>
           <Tr>
-            <Th>Team</Th>
-            <Th>CPR</Th>
-            <Th>Games Played</Th>
-            <Th>APOP</Th>
-            <Th>APDP</Th>
-            <Th>APPD</Th>
-            <Th>AOPR</Th>
-            <Th>ADPR</Th>
+            <Th onClick={() => sortByField("team")}>Team</Th>
+            <Th onClick={() => sortByField("cpr")}>CPR</Th>
+            <Th onClick={() => sortByField("games")}>Games Played</Th>
+            <Th onClick={() => sortByField("apop")}>APOP</Th>
+            <Th onClick={() => sortByField("apdp")}>APDP</Th>
+            <Th onClick={() => sortByField("appd")}>APPD</Th>
+            <Th onClick={() => sortByField("aopr")}>AOPR</Th>
+            <Th onClick={() => sortByField("adpr")}>ADPR</Th>
           </Tr>
         </Thead>
         <Tbody>
