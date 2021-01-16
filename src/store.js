@@ -27,11 +27,10 @@ const Reducer = (state, action) => {
         stats: action.payload,
       }
     case "FETCH_STATS_FAILURE":
-      console.log("Error fetching from API:");
-      console.log(action.payload.message);
       return {
         ...state,
         isFetching: false,
+        errorMsg: action.payload.message
       }
     case "SET_SORT_FIELD":
       return {

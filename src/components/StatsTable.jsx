@@ -6,7 +6,7 @@ import { TriangleDownIcon, TriangleUpIcon } from "@chakra-ui/icons";
 
 const StatsTable = () => {
   const [state, dispatch] = useContext(Context);
-  const { stats, isFetching, sortField, sortDirection } = state;
+  const { stats, sortField, sortDirection } = state;
 
   const fetchStats = useCallback((season) => {
     dispatch({ type: "FETCH_STATS_START" })
