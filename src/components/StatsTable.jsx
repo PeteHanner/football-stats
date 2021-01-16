@@ -46,7 +46,7 @@ const StatsTable = () => {
   }
 
   const sortStats = (array) => {
-    return array.sort((a, b) => {
+    const sortedArr = array.sort((a, b) => {
       if (a[sortField] < b[sortField]) {
         return 1;
       }
@@ -54,6 +54,11 @@ const StatsTable = () => {
         return -1;
       }
       return 0;
+    })
+
+    dispatch({
+      type: "FETCH_STATS_SUCCESS",
+      payload: sortedArr,
     })
   }
 
