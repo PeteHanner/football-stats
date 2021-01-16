@@ -5,6 +5,7 @@ const initialState = {
   stats: [],
   sortField: "cpr",
   sortDirection: "desc",
+  errorMsg: ""
 }
 
 const Reducer = (state, action) => {

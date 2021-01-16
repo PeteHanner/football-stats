@@ -2,6 +2,7 @@ import React, { useCallback, useContext, useEffect } from "react";
 import { Context } from "../store"
 import axios from "axios"
 import { Table, Thead, Tbody, Tr, Th, Td, Center } from "@chakra-ui/react"
+import { TriangleDownIcon, TriangleUpIcon } from "@chakra-ui/icons";
 
 const StatsTable = () => {
   const [state, dispatch] = useContext(Context);
@@ -89,19 +90,26 @@ const StatsTable = () => {
           </Tr>
         )
       }))
-    } else if (isFetching) {
-      return(
-        <Center>
-          <Tr key="0">Loading team data...</Tr>
-        </Center>
-      )
-    } else {
+    } else if (state.errorMsg) {
       return(
         <Center>
           <Tr key="0">Something's gone wrong. Please wait a moment and refresh.</Tr>
         </Center>
       )
+    } else {
+      return(
+        <Center>
+          <Tr key="0">Loading team data...</Tr>
+        </Center>
+      )
     }
+  }
+
+  const sortIcon = (fieldName) => {
+    if (sortField === fieldName) {
+      return sortDirection === "asc" ? <TriangleDownIcon aria-label="sorted descending" /> : <TriangleUpIcon aria-label="sorted ascending" />
+    }
+    return ""
   }
 
   return(
@@ -110,14 +118,14 @@ const StatsTable = () => {
         <Thead>
           <Tr>
             <Th />
-            <Th onClick={() => setSortField("name")}>Team</Th>
-            <Th onClick={() => setSortField("cpr")}>CPR</Th>
-            <Th onClick={() => setSortField("games_played")}>Games Played</Th>
-            <Th onClick={() => setSortField("apop")}>APOP</Th>
-            <Th onClick={() => setSortField("apdp")}>APDP</Th>
-            <Th onClick={() => setSortField("appd")}>APPD</Th>
-            <Th onClick={() => setSortField("aopr")}>AOPR</Th>
-            <Th onClick={() => setSortField("adpr")}>ADPR</Th>
+            <Th onClick={() => setSortField("name")}>Team {sortIcon("name")}</Th>
+            <Th onClick={() => setSortField("cpr")}>CPR {sortIcon("cpr")}</Th>
+            <Th onClick={() => setSortField("games_played")}>Games Played {sortIcon("games_played")}</Th>
+            <Th onClick={() => setSortField("apop")}>APOP {sortIcon("apop")}</Th>
+            <Th onClick={() => setSortField("apdp")}>APDP {sortIcon("apdp")}</Th>
+            <Th onClick={() => setSortField("appd")}>APPD {sortIcon("appd")}</Th>
+            <Th onClick={() => setSortField("aopr")}>AOPR {sortIcon("aopr")}</Th>
+            <Th onClick={() => setSortField("adpr")}>ADPR {sortIcon("adpr")}</Th>
           </Tr>
         </Thead>
         <Tbody>
