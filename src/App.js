@@ -1,8 +1,12 @@
 import Header from "./components/Header";
+import StatsTable from "./components/StatsTable";
 
 function App() {
   return (
-    <Header/>
+    <>
+      <Header/>
+      <StatsTable/>
+    </>
   );
 }
 
