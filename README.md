@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+# College Football Statistics API
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Intro
 
-## Available Scripts
+I started this project during the COVID-19 pandemic, inspired in no small part by the college football season that has happened during that time. I've always subscribed to the adage that "you can only play the teams on your schedule." Usually, this applies in the context of non-P5 teams being penalized harshly and systematically for their conference membership. Teams like UCF, Houston, or Western Michigan have in various recent seasons wrecked shop against virtually every opponent on their schedule, yet been denied well-deserved rankings or playoff spots because those opponents weren't wearing SEC or B1G patches on the front of their jerseys. They've excelled by every possible metric within their control, only to be punished for factors entirely out of their control.
 
-In the project directory, you can run:
+In 2020, however, these forces ascended to an entirely new dimension. With games having drastically different counts between teams, being flexed to new dates or cancelled, and largely limited to in-conference play, how were we supposed to evaluate team quality? I found myself returning to that phrase, "you can only play the teams on your schedule." What would it look like if we tried to judge teams based _only_ on how they performed against their schedule, compared to how other teams fared against the same opponents? This is my attempt to find out.
 
-### `npm start`
+This project uses the public [College Football Data API](https://api.collegefootballdata.com/api/docs/?url=/api-docs.json) to pull just a couple of data points from each game: how many points did each team score, and how many times did they each possess the ball? From there, I calculate a series of adjusted stats (outlined below), ultimately arriving at a single normalized score for each team.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+A couple disclaimers:
++ First, these definitely aren't the most advanced statistics in the world. There are _far_ smarter people than me out there doing _far_ more sophisticated modeling on the CFB world. I just wanted to see what I could come up with on my own.
++ Second, I do NOT necessarily think this is the actual best way to evaluate teams. I set out on this project to answer the question "if we used this standard, who would be the best teams according to this standard?", not "who are the best teams period?". I do still believe non-brand name teams get cheated more often than not, but there is something to be said for the eye test and intangibles.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The current season can be queried with a GET request to https://pete-hanner-football-stats-api.herokuapp.com/seasons/2020. Other seasons are not currently available so I could stay within free Heroku DB limits.
 
-### `npm test`
+## The Stats
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### First-Order Game Stats
 
-### `npm run build`
+#### Points per Offensive Possession (POP)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
++ Your points ÷ Your possessions
++ On average, How many points did you get every time you had the ball in this game?
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Points per Defensive Possession (PDP)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
++ Opponent points ÷ Opponent possessions
++ On average, how many points did you give up every time your opponent had the ball in this game?
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### First-Order Season Stats
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Average Points per Offensive Possession (APOP)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
++ Sum of all your POP stats ÷ Your total games played
++ On average, how many points do you gain whenever you have the ball?
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### Average Points per Defensive Possession (APDP)
 
-## Learn More
++ Sum of all your PDP stats ÷ Your total games played
++ On average, how many points do you give up whenever your opponents have the ball?
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Average Points per Possession Differential (APDP)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
++ APOP - APDP
++ On average, how many points do you gain per possession vs. give up per opponent possession?
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Second-Order Game Stats
 
-### Analyzing the Bundle Size
+#### Offensive Performance Ratio (OPR)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
++ 100(Your POP ÷ Your opponent's APDP) - 100
++ As a percentage, how did your offense perform in this game compared to all offenses that have faced this opponent?
++ Positive values are % overperforming mutual opponent average, negative values are underperforming.
 
-### Making a Progressive Web App
+#### Defensive Performance Ratio (DPR)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
++ 100(Your opponent's APOP ÷ Your PDP) - 100
++ As a percentage, how did your defense perform in this game compared to all defenses that have faced this opponent?
++ Positive values are % overperforming mutual opponent average, negative values are underperforming.
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Second-Order Season Stats
 
-### Deployment
+#### Average Offensive Performance Ratio (AOPR)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
++ Sum of all your OPR stats ÷ Your total games played
++ As a percentage, how does your offense usually perform compared to all offenses that have faced your opponents?
 
-### `npm run build` fails to minify
+#### Average Defensive Performance Ratio (ADPR)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
++ Sum of all your DPR stats ÷ Your total games played
++ As a percentage, how does your defense usually perform compared to all defenses that have faced your opponents?
+
+#### Cumulative Performance Ratio (CPR)
+
++ The final statistic
++ Sum of AOPR and ADPR ÷ 2
++ As a percentage, how does your team usually perform compared to all teams that have faced your opponents?
