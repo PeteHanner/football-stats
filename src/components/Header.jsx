@@ -8,7 +8,7 @@ const Header = () => {
       <Heading as='h1'>College Football Performance Ratio Stats</Heading>
     </Center>
     <Center>
-      <Text fontSize="med"><Link color="#6286a2" href="https://github.com/PeteHanner/football-stats/blob/main/README.md" isExternal>What do all these acronyms mean?</Link></Text>
+      <Text fontSize="med"><Link color="#6286a2" href="https://github.com/PeteHanner/football-stats#the-stats" isExternal>What do all these acronyms mean?</Link></Text>
     </Center>
     <br/>
     <Center>
@@ -23,4 +23,4 @@ const Header = () => {
     )
   }
 
-  export default Header;
+export default Header;
