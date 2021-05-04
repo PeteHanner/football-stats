@@ -12,8 +12,15 @@ const StatsTable = () => {
   const { stats, sortField, sortDirection } = state;
 
   const fetchStats = useCallback((season) => {
+    let fetchUrl;
+    if (process.env.NODE_ENV === 'production') {
+      fetchUrl = `https://pete-hanner-football-stats-api.herokuapp.com/seasons/${season}`
+    } else {
+      fetchUrl = `http://localhost:3001/seasons/${season}`
+    }
+
     dispatch({ type: "FETCH_STATS_START" })
-    axios.get(`https://pete-hanner-football-stats-api.herokuapp.com/seasons/${season}`)
+    axios.get(fetchUrl)
     .then(response => {
       const rspArr = sortStats(response.data)
       if (rspArr.length <= 1) {
