@@ -39,14 +39,17 @@ const TableHeader = () => {
         <Th
           pos="sticky"
           top="0"
-          bg="#A0AEC0"
+          bg="white"
           color="#1A202C"
+          boxShadow="inset 0 -2px 0 #A0AEC0;"
         />
         <Th
+          p="0.5rem"
           pos="sticky"
           top="0"
-          bg="#A0AEC0"
+          bg="white"
           color="#1A202C"
+          boxShadow="inset 0 -2px 0 #A0AEC0;"
           cursor="pointer"
           onClick={() => setSortField("name")}
         >
@@ -55,8 +58,9 @@ const TableHeader = () => {
         <Th
           pos="sticky"
           top="0"
-          bg="#A0AEC0"
+          bg="white"
           color="#1A202C"
+          boxShadow="inset 0 -2px 0 #A0AEC0;"
           cursor="pointer"
           onClick={() => setSortField("cpr")}
         >
@@ -65,8 +69,9 @@ const TableHeader = () => {
         <Th
           pos="sticky"
           top="0"
-          bg="#A0AEC0"
+          bg="white"
           color="#1A202C"
+          boxShadow="inset 0 -2px 0 #A0AEC0;"
           cursor="pointer"
           onClick={() => setSortField("games_played")}
         >
@@ -75,8 +80,9 @@ const TableHeader = () => {
         <Th
           pos="sticky"
           top="0"
-          bg="#A0AEC0"
+          bg="white"
           color="#1A202C"
+          boxShadow="inset 0 -2px 0 #A0AEC0;"
           cursor="pointer"
           onClick={() => setSortField("apop")}
         >
@@ -85,8 +91,9 @@ const TableHeader = () => {
         <Th
           pos="sticky"
           top="0"
-          bg="#A0AEC0"
+          bg="white"
           color="#1A202C"
+          boxShadow="inset 0 -2px 0 #A0AEC0;"
           cursor="pointer"
           onClick={() => setSortField("apdp")}
         >
@@ -95,8 +102,9 @@ const TableHeader = () => {
         <Th
           pos="sticky"
           top="0"
-          bg="#A0AEC0"
+          bg="white"
           color="#1A202C"
+          boxShadow="inset 0 -2px 0 #A0AEC0;"
           cursor="pointer"
           onClick={() => setSortField("appd")}
         >
@@ -105,8 +113,9 @@ const TableHeader = () => {
         <Th
           pos="sticky"
           top="0"
-          bg="#A0AEC0"
+          bg="white"
           color="#1A202C"
+          boxShadow="inset 0 -2px 0 #A0AEC0;"
           cursor="pointer"
           onClick={() => setSortField("aopr")}
         >
@@ -115,8 +124,9 @@ const TableHeader = () => {
         <Th
           pos="sticky"
           top="0"
-          bg="#A0AEC0"
+          bg="white"
           color="#1A202C"
+          boxShadow="inset 0 -2px 0 #A0AEC0;"
           cursor="pointer"
           onClick={() => setSortField("adpr")}
         >
