@@ -36,29 +36,90 @@ const TableHeader = () => {
   return(
     <Thead>
       <Tr>
-        <Th />
-        <Th cursor="pointer" onClick={() => setSortField("name")}>
+        <Th
+          pos="sticky"
+          top="0"
+          bg="#A0AEC0"
+          color="#1A202C"
+        />
+        <Th
+          pos="sticky"
+          top="0"
+          bg="#A0AEC0"
+          color="#1A202C"
+          cursor="pointer"
+          onClick={() => setSortField("name")}
+        >
           Team {sortIcon("name")}
         </Th>
-        <Th cursor="pointer" onClick={() => setSortField("cpr")}>
+        <Th
+          pos="sticky"
+          top="0"
+          bg="#A0AEC0"
+          color="#1A202C"
+          cursor="pointer"
+          onClick={() => setSortField("cpr")}
+        >
           CPR {sortIcon("cpr")}
         </Th>
-        <Th cursor="pointer" onClick={() => setSortField("games_played")}>
+        <Th
+          pos="sticky"
+          top="0"
+          bg="#A0AEC0"
+          color="#1A202C"
+          cursor="pointer"
+          onClick={() => setSortField("games_played")}
+        >
           Games Played {sortIcon("games_played")}
         </Th>
-        <Th cursor="pointer" onClick={() => setSortField("apop")}>
+        <Th
+          pos="sticky"
+          top="0"
+          bg="#A0AEC0"
+          color="#1A202C"
+          cursor="pointer"
+          onClick={() => setSortField("apop")}
+        >
           APOP {sortIcon("apop")}
         </Th>
-        <Th cursor="pointer" onClick={() => setSortField("apdp")}>
+        <Th
+          pos="sticky"
+          top="0"
+          bg="#A0AEC0"
+          color="#1A202C"
+          cursor="pointer"
+          onClick={() => setSortField("apdp")}
+        >
           APDP {sortIcon("apdp")}
         </Th>
-        <Th cursor="pointer" onClick={() => setSortField("appd")}>
+        <Th
+          pos="sticky"
+          top="0"
+          bg="#A0AEC0"
+          color="#1A202C"
+          cursor="pointer"
+          onClick={() => setSortField("appd")}
+        >
           APPD {sortIcon("appd")}
         </Th>
-        <Th cursor="pointer" onClick={() => setSortField("aopr")}>
+        <Th
+          pos="sticky"
+          top="0"
+          bg="#A0AEC0"
+          color="#1A202C"
+          cursor="pointer"
+          onClick={() => setSortField("aopr")}
+        >
           AOPR {sortIcon("aopr")}
         </Th>
-        <Th cursor="pointer" onClick={() => setSortField("adpr")}>
+        <Th
+          pos="sticky"
+          top="0"
+          bg="#A0AEC0"
+          color="#1A202C"
+          cursor="pointer"
+          onClick={() => setSortField("adpr")}
+        >
           ADPR {sortIcon("adpr")}
         </Th>
       </Tr>
